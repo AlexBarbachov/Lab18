@@ -99,14 +99,14 @@ void addTail(review*& head, double rating, const string& comment)
 // find avg and display
 void displayReviews(review* head)
 {
-    int count = 1;
+    int count = 0;
     double sum = 0;
 
     cout << "Outputting all reviews:" << endl;
 
     for (review* cur = head; cur; cur = cur->next)
     {
-        cout << "\tReview #" << count << ": " << cur->rating << ": " << cur->comment << endl;
+        cout << "\tReview #" << count + 1 << ": " << cur->rating << ": " << cur->comment << endl;
         sum += cur->rating;
         count++;
     }
