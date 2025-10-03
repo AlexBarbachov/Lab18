@@ -25,6 +25,34 @@ int main()
     cout << "Choice: ";
     cin >> choice;
 
+    review* head = nullptr; // start with empty list
+
+    char again = 'y'; // for second review
+    while (again == 'y' || again == 'Y')
+    {
+        double rating;
+        string comment;
+
+        cout << "Enter review rating 0-5: ";
+        cin >> rating;
+
+        cin.ignore(); // clear buffer
+
+        cout << "Enter review comments: ";
+        getline(cin, comment);
+
+        if (choice == 1)
+            addHead(head, rating, comment);
+        else
+            addTail(head, rating, comment);
+
+        
+        cout << "Enter another review? Y/N";
+        cin >> again;
+
+        cin.ignore(); // clear input buffer
+
+    }
 
 
 }
@@ -35,6 +63,8 @@ void addHead(review*& head, double rating, const string& comment)
 {
     review* newNode = new review{rating, comment, head}; // create new head node
     head = newNode; // update head
+
+
 }
 
 
