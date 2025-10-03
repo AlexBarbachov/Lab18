@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -51,8 +53,11 @@ int main()
         cin >> again;
 
         cin.ignore(); // clear input buffer
-
     }
+
+    displayReviews(head);
+
+    deleteList(head); // free memory
 
 
 }
@@ -71,7 +76,7 @@ void addHead(review*& head, double rating, const string& comment)
 // new tail node
 void addTail(review*& head, double rating, const string& comment)
 {
-    review* newNode = new review(rating, comment, nullptr);
+    review* newNode = new review{rating, comment, nullptr};
 
 
     if (!head)
@@ -94,7 +99,26 @@ void addTail(review*& head, double rating, const string& comment)
 // find avg and display
 void displayReviews(review* head)
 {
+    int count = 1;
+    double sum = 0;
 
+    cout << "Outputting all reviews:" << endl;
+
+    for (review* cur = head; cur; cur = cur->next)
+    {
+        cout << "\tReview #" << count << ": " << cur->rating << ": " << cur->comment << endl;
+        sum += cur->rating;
+        count++;
+    }
+
+    if (count)
+    {
+        cout << "\tAverage: " << fixed << setprecision(5) << sum/count << "\n";
+    }
+    else
+    {
+        cout << "\tNo reviews." << endl;
+    }
 }
 
 // free memory after finished
